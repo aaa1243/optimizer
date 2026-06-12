@@ -11,7 +11,7 @@
 
 # ===================== CONFIG (edit these two) =====================
 $ReleaseUrl     = 'https://github.com/aaa1243/optimizer/releases/latest/download/GamingOptimizer.exe'
-$ExpectedSha256 = '48c360942125ac65f88584fde4914e47f78eb23e701905d295ac6e389833de05'
+$ExpectedSha256 = '54baa7da7293e60aa2e65582ce5a4cf5b898b76c57767dad028a4ca70fd2d57b'
 # ==================================================================
 
 $ErrorActionPreference = 'Stop'
