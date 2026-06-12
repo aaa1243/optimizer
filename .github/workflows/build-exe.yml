@@ -1,0 +1,54 @@
+name: Build EXE
+
+# Build when you push a version tag (e.g. git tag v1.0.0 && git push --tags),
+# or run manually from the Actions tab (manual runs just upload a downloadable artifact).
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write   # lets the release step attach files
+
+jobs:
+  build:
+    runs-on: windows-latest   # Windows runner = Windows PowerShell 5.1, which ps2exe needs
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install ps2exe
+        shell: powershell
+        run: |
+          [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+          Install-Module ps2exe -Force -Scope CurrentUser
+
+      - name: Compile GUI to EXE
+        shell: powershell
+        run: |
+          Invoke-ps2exe .\GamingOptimizerGUI.ps1 .\GamingOptimizer.exe `
+            -noConsole -requireAdmin -title "Gaming Optimizer" -product "Gaming Optimizer"
+
+      - name: Compute SHA-256
+        shell: powershell
+        run: |
+          $h = (Get-FileHash .\GamingOptimizer.exe -Algorithm SHA256).Hash
+          Write-Host "SHA256: $h"
+          $h | Out-File -Encoding ascii -NoNewline GamingOptimizer.exe.sha256
+
+      - name: Upload build artifact (always)
+        uses: actions/upload-artifact@v4
+        with:
+          name: GamingOptimizer
+          path: |
+            GamingOptimizer.exe
+            GamingOptimizer.exe.sha256
+
+      - name: Attach to Release (tag pushes only)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            GamingOptimizer.exe
+            GamingOptimizer.exe.sha256
