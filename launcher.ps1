@@ -10,8 +10,8 @@
 #>
 
 # ===================== CONFIG (edit these two) =====================
-$ReleaseUrl     = 'https://github.com/YOUR_USER/YOUR_REPO/releases/latest/download/GamingOptimizer.exe'
-$ExpectedSha256 = 'PUT_THE_SHA256_OF_YOUR_EXE_HERE'
+$ReleaseUrl     = 'https://github.com/aaa1243/optimizer/releases/latest/download/GamingOptimizer.exe'
+$ExpectedSha256 = '48c360942125ac65f88584fde4914e47f78eb23e701905d295ac6e389833de05'
 # ==================================================================
 
 $ErrorActionPreference = 'Stop'
