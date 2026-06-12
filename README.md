@@ -66,20 +66,6 @@ All of the following are reversible.
 - **Install tools (winget)** — Process Lasso, MSI Afterburner + RTSS, CapFrameX, Autoruns, DDU.
 - **Save log** and **Check for updates**.
 
----
-
-## The bigger wins it can't do for you
-
-These matter more than anything the app toggles, and have to be done by hand:
-
-- **Go wired.** A cable beats any tweak for hit-reg consistency.
-- **Fix bufferbloat at your router** (SQM / anti-bufferbloat QoS, or fq_codel/CAKE on OpenWrt).
-- **Enable XMP/EXPO in BIOS** so your RAM runs at its rated speed instead of the slower JEDEC fallback, and use two sticks for dual-channel.
-- **Keep your BIOS and chipset drivers current**, and run your CPU at its manufacturer-default power/voltage settings rather than an unstable overclock or overvolt profile.
-- **In your GPU control panel**, set power management to prefer maximum performance, enable the low-latency / anti-lag mode, turn Vsync off, and cap FPS just under your refresh rate. Plug the monitor into the GPU, not the motherboard.
-- **OptiFine 1.8.9** + a current Java 8 runtime (e.g. Adoptium Temurin).
-
-The app **detects and reminds** you about these but won't change them, because they can't be done safely from a script.
 
 ---
 
